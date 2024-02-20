@@ -1,16 +1,53 @@
-<div>
-  <form>
+<div class="flex justify-center">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="reservationForm"
+    class="grid grid-cols-1"
+  >
     <mat-form-field>
       <mat-label>Choose a day</mat-label>
-      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="dateFilter"/>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [matDatepickerFilter]="dateFilter"
+        (dateChange)="valueChanged($event)"
+        formControlName="date"
+      />
       <mat-datepicker-toggle
         matIconSuffix
         [for]="picker"
       ></mat-datepicker-toggle>
       <mat-datepicker #picker [touchUi]="true"></mat-datepicker>
     </mat-form-field>
-    <div>lalala</div>
 
-    <button>Submit</button>
+    <div class="flex gap-1">
+      <mat-form-field>
+        <mat-label>Choose time</mat-label>
+        <mat-select [(value)]="selectedTime" formControlName="time">
+          @for (time of times; track $index) {
+          <mat-option [value]="time">{{ time }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Guests count</mat-label>
+        <mat-select
+          [(value)]="selectedGuestCount"
+          formControlName="guestsCount"
+        >
+          @for (guestCount of guestsList; track $index) {
+          <mat-option [value]="guestCount">{{ guestCount }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Leave a comment</mat-label>
+      <textarea matInput formControlName="comment"></textarea>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="!this.reservationForm.valid" class="bg-orange-200 p-1 rounded-sm">Submit</button>
   </form>
 </div>
