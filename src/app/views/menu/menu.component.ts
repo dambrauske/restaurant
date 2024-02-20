@@ -16,6 +16,5 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantInfo = this.restaurantService.getRestaurantInfo();
-    console.warn(this.restaurantInfo.menu)
   }
 }
