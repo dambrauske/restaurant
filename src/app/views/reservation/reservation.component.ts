@@ -16,7 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [
     provideNativeDateAdapter(),
@@ -49,7 +49,14 @@ export class ReservationComponent {
     '19:30',
     '20:00',
   ];
-  guestsList: string[] = ['1 guest', '2 guests', '3 guests', '4 guests', '5 guests', '6 guests']
+  guestsList: string[] = [
+    '1 guest',
+    '2 guests',
+    '3 guests',
+    '4 guests',
+    '5 guests',
+    '6 guests',
+  ];
   selectedTime!: string;
   selectedGuestCount!: string;
 
@@ -67,18 +74,28 @@ export class ReservationComponent {
 
   valueChanged(event: any) {
     this.selectedDay = event.value;
-    console.log(event);
-    
+    console.log(event.value);
   }
 
   reservationForm = new FormGroup({
     date: new FormControl('', Validators.required),
     time: new FormControl('', Validators.required),
     guestsCount: new FormControl('', Validators.required),
-    comment: new FormControl('')
+    name: new FormControl('', Validators.required),
+    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15)]),
+    comment: new FormControl(''),
   });
 
+  validatePhone(event: any) {
+    const key = event.key;
+    console.log(key);
+    const validKeys = ['+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    if (!validKeys.includes(key)) {
+      event.preventDefault();
+    } else return;
+  }
+
   onSubmit() {
-    console.warn(this.reservationForm)
+    console.warn(this.reservationForm);
   }
 }

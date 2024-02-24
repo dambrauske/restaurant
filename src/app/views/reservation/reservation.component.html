@@ -18,6 +18,8 @@
         [for]="picker"
       ></mat-datepicker-toggle>
       <mat-datepicker #picker [touchUi]="true"></mat-datepicker>
+      @if (reservationForm.controls.date.hasError('required')) {
+      <mat-error>Please select a date</mat-error> }
     </mat-form-field>
 
     <div class="flex gap-1">
@@ -28,6 +30,8 @@
           <mat-option [value]="time">{{ time }}</mat-option>
           }
         </mat-select>
+        @if (reservationForm.controls.time.hasError('required')) {
+        <mat-error>Please choose time</mat-error> }
       </mat-form-field>
 
       <mat-form-field>
@@ -40,14 +44,50 @@
           <mat-option [value]="guestCount">{{ guestCount }}</mat-option>
           }
         </mat-select>
+        @if (reservationForm.controls.guestsCount.hasError('required')) {
+        <mat-error>Please select guests count</mat-error> }
       </mat-form-field>
     </div>
+
+    @if (reservationForm.controls.date.valid &&
+    reservationForm.controls.time.valid &&
+    reservationForm.controls.guestsCount.valid) {
+    <mat-form-field>
+      <mat-label>Full name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      @if (reservationForm.controls.name.hasError('required')) {
+      <mat-error>Please enter full name</mat-error> }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <input
+        matInput
+        type="tel"
+        formControlName="phone"
+        pattern="^\\+?\\d{11}$"
+        (keypress)="validatePhone($event)"
+        maxlength="15"
+      />
+      @if (reservationForm.controls.phone.hasError('minlength') ||
+      reservationForm.controls.phone.hasError('maxlength')) {
+      <mat-error>Please enter a valid phone number</mat-error> } @if
+      (reservationForm.controls.phone.hasError('required')) {
+      <mat-error>Please enter your phone number</mat-error> }
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Leave a comment</mat-label>
       <textarea matInput formControlName="comment"></textarea>
     </mat-form-field>
 
-    <button type="submit" [disabled]="!this.reservationForm.valid" class="bg-orange-200 p-1 rounded-sm">Submit</button>
+    }
+
+    <button
+      type="submit"
+      [disabled]="!this.reservationForm.valid"
+      class="bg-orange-200 p-1 rounded-sm"
+    >
+      Submit
+    </button>
   </form>
 </div>
