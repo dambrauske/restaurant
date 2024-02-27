@@ -2,6 +2,7 @@ export type Restaurant = {
     name: string,
     address: string,
     phone: string,
+    description: string;
     menu: MenuCategory[],
 }
 

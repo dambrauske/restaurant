@@ -17,12 +17,12 @@ export class MenuComponent implements OnInit {
 
   constructor(private restaurantService: RestaurantService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.restaurantService.getRestaurantInfo().subscribe({
       next: (res: any) => {
         if (res.data) {
           this.dataReceived = true;
-          this.restaurantInfo = res.data;
+          this.restaurantInfo = res.data;          
         }
       },
     });

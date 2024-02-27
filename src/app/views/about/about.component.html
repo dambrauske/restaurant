@@ -1,1 +1,6 @@
-<p>about works!</p>
+<div>
+    @if (this.dataReceived) {
+            <h1>{{ this.restaurantInfo.name }}</h1>
+            <p>{{ this.restaurantInfo.description }}</p>
+    }
+</div>
