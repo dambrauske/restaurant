@@ -21,7 +21,6 @@ export class MenuComponent implements OnInit {
     this.restaurantService.getRestaurantInfo().subscribe({
       next: (res: any) => {
         if (res.data) {
-          console.log(res.data);
           this.dataReceived = true;
           this.restaurantInfo = res.data;
         }

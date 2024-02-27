@@ -1,10 +1,14 @@
 <div class="flex items-center gap-4 bg-orange-300 p-1">
   <div class="flex gap-1 items-center">
     <mat-icon> location_on</mat-icon>
-    <!-- <div>{{ this.restaurantInfo.address }}</div> -->
+    @if (this.dataReceived) {
+    <div>{{ this.restaurantInfo.address }}</div>
+    }
   </div>
   <div class="flex gap-1 items-center">
     <mat-icon> phone</mat-icon>
-    <!-- <div>{{ this.restaurantInfo.phone }}</div> -->
+    @if (this.dataReceived) {
+    <div>{{ this.restaurantInfo.phone }}</div>
+    }
   </div>
 </div>
