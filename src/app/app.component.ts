@@ -6,25 +6,27 @@ import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './views/about/about.component';
 import { MenuComponent } from './views/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from "./components/footer/footer.component";
 
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  imports: [
-    RouterOutlet,
-    MatButtonModule,
-    MatIconModule,
-    HeaderComponent,
-    AboutComponent,
-    MenuComponent,
-    RouterLink,
-    RouterLinkActive,
-    HttpClientModule,
-  ],
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [
+        RouterOutlet,
+        MatButtonModule,
+        MatIconModule,
+        HeaderComponent,
+        AboutComponent,
+        MenuComponent,
+        RouterLink,
+        RouterLinkActive,
+        HttpClientModule,
+        FooterComponent
+    ]
 })
 export class AppComponent {
   title = 'project';
