@@ -62,17 +62,17 @@
       <mat-label>Phone number</mat-label>
       <input
         matInput
-        type="tel"
+        type="text"
         formControlName="phone"
-        pattern="^\\+?\\d{11}$"
         (keypress)="validatePhone($event)"
-        maxlength="15"
+        maxlength="12"
       />
       @if (reservationForm.controls.phone.hasError('minlength') ||
       reservationForm.controls.phone.hasError('maxlength')) {
       <mat-error>Please enter a valid phone number</mat-error> } @if
       (reservationForm.controls.phone.hasError('required')) {
       <mat-error>Please enter your phone number</mat-error> }
+      <div>{{reservationForm.controls.phone.status}}</div>
     </mat-form-field>
 
     <mat-form-field>

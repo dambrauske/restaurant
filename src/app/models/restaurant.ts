@@ -15,3 +15,4 @@ export type MenuItem = {
     description: string;
     price: number;
 }
+

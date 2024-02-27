@@ -12,9 +12,5 @@ import { RestaurantService } from '../../services/restaurant.service';
   styleUrl: './top-header.component.css',
 })
 export class TopHeaderComponent {
-  restaurantInfo: Restaurant;
 
-  constructor(private restaurantService: RestaurantService){
-    this.restaurantInfo = this.restaurantService.getRestaurantInfo()
-  }
 }

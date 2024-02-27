@@ -5,6 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './views/about/about.component';
 import { MenuComponent } from './views/menu/menu.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-root',
@@ -20,6 +23,7 @@ import { MenuComponent } from './views/menu/menu.component';
     MenuComponent,
     RouterLink,
     RouterLinkActive,
+    HttpClientModule,
   ],
 })
 export class AppComponent {

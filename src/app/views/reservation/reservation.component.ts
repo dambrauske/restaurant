@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { ReservationService } from '../../services/reservation.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-reservation',
@@ -17,16 +19,18 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatDatepickerModule,
     MatSelectModule,
+    HttpClientModule,
   ],
   providers: [
     provideNativeDateAdapter(),
     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' },
+    ReservationService,
   ],
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.css',
 })
 export class ReservationComponent {
-  selectedDay: Date | null = null;
+  selectedDay: Date | undefined = undefined;
   times: string[] = [
     '11:00',
     '11:30',
@@ -60,7 +64,7 @@ export class ReservationComponent {
   selectedTime!: string;
   selectedGuestCount!: string;
 
-  constructor() {}
+  constructor(private reservationService: ReservationService) {}
 
   dateFilter(d: Date | null): boolean {
     const today = new Date();
@@ -82,13 +86,16 @@ export class ReservationComponent {
     time: new FormControl('', Validators.required),
     guestsCount: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
-    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(15)]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(12),
+    ]),
     comment: new FormControl(''),
   });
 
   validatePhone(event: any) {
     const key = event.key;
-    console.log(key);
     const validKeys = ['+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     if (!validKeys.includes(key)) {
       event.preventDefault();
@@ -96,6 +103,22 @@ export class ReservationComponent {
   }
 
   onSubmit() {
-    console.warn(this.reservationForm);
+    console.warn(this.reservationForm.controls);
+
+    const data = {
+      date: this.reservationForm.controls.date.value,
+      time: this.reservationForm.controls.time.value,
+      guestsCount: this.reservationForm.controls.guestsCount.value,
+      comment: this.reservationForm.controls.comment.value,
+      name: this.reservationForm.controls.name.value,
+      phone: this.reservationForm.controls.phone.value,
+    };
+
+    this.reservationService.create(data).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (e) => console.error(e),
+    });
   }
 }
