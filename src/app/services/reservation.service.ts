@@ -14,4 +14,11 @@ export class ReservationService {
   create(data: any): Observable<any> {
     return this.http.post(`${baseUrl}/addReservation`, data);
   }
+
+  getAvailableTimes(date: String, guestsCount: String): Observable<Object> {
+    console.log("getAvailableTimes started in front", date, guestsCount);
+    
+    const body = { date, guestsCount };
+    return this.http.post(`${baseUrl}/getTimes`, body);
+  }
 }

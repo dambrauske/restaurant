@@ -9,12 +9,9 @@ const baseUrl = 'http://localhost:8000';
   providedIn: 'root',
 })
 export class RestaurantService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getRestaurantInfo (): Observable<Object> {
-  
-    return this.http.get(`${baseUrl}/restaurant`)
-    
+  getRestaurantInfo(): Observable<Object> {
+    return this.http.get(`${baseUrl}/restaurant`);
   }
 }

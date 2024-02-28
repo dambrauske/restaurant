@@ -4,6 +4,8 @@
     [formGroup]="reservationForm"
     class="grid grid-cols-1"
   >
+  <div class="flex gap-1">
+
     <mat-form-field>
       <mat-label>Choose a day</mat-label>
       <input
@@ -22,18 +24,6 @@
       <mat-error>Please select a date</mat-error> }
     </mat-form-field>
 
-    <div class="flex gap-1">
-      <mat-form-field>
-        <mat-label>Choose time</mat-label>
-        <mat-select [(value)]="selectedTime" formControlName="time">
-          @for (time of times; track $index) {
-          <mat-option [value]="time">{{ time }}</mat-option>
-          }
-        </mat-select>
-        @if (reservationForm.controls.time.hasError('required')) {
-        <mat-error>Please choose time</mat-error> }
-      </mat-form-field>
-
       <mat-form-field>
         <mat-label>Guests count</mat-label>
         <mat-select
@@ -47,7 +37,20 @@
         @if (reservationForm.controls.guestsCount.hasError('required')) {
         <mat-error>Please select guests count</mat-error> }
       </mat-form-field>
-    </div>
+  </div>
+
+      @if (this.times) {
+         <mat-form-field class="md:w-1/2">
+          <mat-label>Choose time</mat-label>
+          <mat-select [(value)]="selectedTime" formControlName="time">
+            @for (time of times; track $index) {
+            <mat-option [value]="time">{{ time }}</mat-option>
+            }
+          </mat-select>
+          @if (reservationForm.controls.time.hasError('required')) {
+          <mat-error>Please choose time</mat-error> }
+        </mat-form-field>
+      }
 
     @if (reservationForm.controls.date.valid &&
     reservationForm.controls.time.valid &&
