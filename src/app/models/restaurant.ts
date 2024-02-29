@@ -17,4 +17,10 @@ export type MenuItem = {
     price: number;
 }
 
+export type Time = {
+    time: string;
+    tableNo: string;
+    tableId: string;
+  }
+
 

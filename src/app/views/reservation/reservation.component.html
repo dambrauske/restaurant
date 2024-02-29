@@ -30,7 +30,7 @@
           [(value)]="selectedGuestCount"
           formControlName="guestsCount"
         >
-          @for (guestCount of guestsList; track $index) {
+          @for (guestCount of guestsCountList; track $index) {
           <mat-option [value]="guestCount">{{ guestCount }}</mat-option>
           }
         </mat-select>
@@ -44,7 +44,7 @@
           <mat-label>Choose time</mat-label>
           <mat-select [(value)]="selectedTime" formControlName="time">
             @for (time of times; track $index) {
-            <mat-option [value]="time">{{ time }}</mat-option>
+            <mat-option [value]="time">{{ time.time }}</mat-option>
             }
           </mat-select>
           @if (reservationForm.controls.time.hasError('required')) {
