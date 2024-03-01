@@ -109,6 +109,7 @@ export class ReservationComponent {
       date: this.reservationForm.controls.date.value,
       time: timeObject?.time,
       tableNo: timeObject?.tableNo,
+      tableId: timeObject?.tableId,
       guestsCount: this.reservationForm.controls.guestsCount.value,
       comment: this.reservationForm.controls.comment.value,
       name: this.reservationForm.controls.name.value,

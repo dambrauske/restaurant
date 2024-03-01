@@ -7,6 +7,7 @@ import { AboutComponent } from './views/about/about.component';
 import { MenuComponent } from './views/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from "./components/footer/footer.component";
+import { HomeComponent } from "./views/home/home.component";
 
 
 
@@ -25,7 +26,8 @@ import { FooterComponent } from "./components/footer/footer.component";
         RouterLink,
         RouterLinkActive,
         HttpClientModule,
-        FooterComponent
+        FooterComponent,
+        HomeComponent
     ]
 })
 export class AppComponent {
